@@ -1,9 +1,9 @@
 'use client'
 
 import { FormEvent, useState } from 'react';
+import GoogleButton from "react-google-button"
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation'; 
-import Navbar from "@/components/Navbar";
 
 function LoginPage() {
 
@@ -33,7 +33,9 @@ function LoginPage() {
           <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
             <div className="max-w-md mx-auto">
               <div>
-                <h1 className="text-3xl font-semibold text-gray-400">SIGN IN</h1>
+                <h1 className="text-3xl font-semibold text-gray-400">
+                  SIGN IN
+                </h1>
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="divide-y divide-gray-200">
@@ -67,6 +69,12 @@ function LoginPage() {
                       >
                         Login
                       </button>
+                    </div>
+                      <div className="text-center w-full">
+                        <GoogleButton
+                          onClick={() => signIn("google")}
+                          className="mx-auto mt-16"
+                        />
                     </div>
                   </div>
                 </div>

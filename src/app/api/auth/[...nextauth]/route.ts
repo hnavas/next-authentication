@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import GoogleProvider from 'next-auth/providers/google'
 import { connectDB } from "@/libs/mongodb"
 import User from "@/models/user"
 import bcrypt from "bcryptjs"
@@ -8,7 +9,6 @@ const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: 'Credentials',
-     
       credentials: {
         email: { label: "Email", type: "email", placeholder: "jsmith@mail.com" },
         password: { label: "Password", type: "password", placeholder: "******" }
@@ -28,6 +28,10 @@ const handler = NextAuth({
         return userFound;
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID as any,
+      clientSecret: process.env.GOOGLE_SECRET as any
+    })
   ],
   callbacks: {
     jwt({ account, token, user, profile, session }) {

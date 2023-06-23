@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 async function Navbar() {
 
   const session = await getServerSession();
@@ -20,7 +20,7 @@ async function Navbar() {
                 <Link href="/about">About</Link>
               </li>
               <li className="px-3 py-1">
-                <Link href="/api/auth/signout">SignOut</Link>
+                <Link href="/api/auth/signout" >SignOut</Link>
               </li>
             </>
           ) : (
